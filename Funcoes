@@ -1,0 +1,77 @@
+## cv.imwrite("anitta.webp")
+    function is used to save an image to a specified file path in various formats
+filename: A string representing the path and file name for the output image. The image format is determined by the file extension provided (e.g., .png, .jpg).
+img: The image data, typically a NumPy array.
+params: Optional format-specific parameters, such as image quality or compression level. 
+
+## cv.imread(pathfile, flag)
+    load an image from a specified file path into memory as a NumPy array. The function is accessed as cv2.imread() in Python
+'pathfile: is the file path to the image you want to load. The image format is determined by the file extension.
+
+flag: is an optional argument that specifies how the image should be loaded. 
+
+## cv.KeyPoint(x, y, size, angle, response, octave)
+    cria um ponto de interesse na imagem
+x, y: coordenadas do ponto na imagem
+size: tamanho da regiao ao redor do keypoint, representa a escala
+angle?: orientacao do keypoint
+response?: importancia do keypoint, quanto maior, mais importante eh
+octave?: nível da pirâmide de escala onde o ponto foi detectado
+
+depois de um ponto criado, podemos acessar:
+kp.pt        # (x, y)
+kp.size      # escala
+kp.angle     # orientação
+kp.response  # importância
+kp.octave    # nível da pirâmide
+kp.class_id  # id opcional
+
+## cv.drawKeypoints(image, keypoints, outImage, color, flags)
+    is used to visualize detected keypoints on an image
+
+image: The source image where the keypoints were detected.
+
+keypoints: A list of cv2.KeyPoint objects obtained from a keypoint detector
+
+outImage: The output image where the keypoints will be drawn. The source image can be used as the background. se eu passar um vetor nesse paramentro, a funcao desenha a imagem nesse vetor e retorna a mesma imagem, se eu passar um vetor vazio ou None, ignora o parametro.
+
+color (optional): Color of the keypoints, specified as a tuple (B, G, R). If None, a random color is used.
+flags (optional): Flags setting drawing features.
+
+## cv.SIFT_create(nfeatures=0, nOctaveLayers=3, contrastThreshold=0.04, edgeThreshold=10, sigma=1.6 )
+    cria um objeto SIFT. É um detector + descritor
+        detecta keypoints e calcula os descritores (128d)
+nfeatures?: numero maximo de keypoints
+nOctaveLayers?: quantas divisões por escala. controla a precisão, quanto mais alto, mais detalhado e mais lento
+contrastThreshold?: evita detectar ruído
+    maior -> menos keypoints
+    menor -> mais keypoints
+edgeThreshold?: remove pontos em bordas
+    maior -> aceita mais bordas
+    menor -> filtra mais
+sigma?: blur inicial (Gaussiano), controla suavização da imagem
+
+## cv.SIFT_create().detect(image, None)
+    encontra os keypoints na imagem e retorna uma linsta de keypoints [cv.keypoint()]
+image: imagem de entrada, pode ser gray ou colorida, mas temos preferência por imagens cinzas
+mask?: máscara que define onde procurar os keypoints
+
+## cv.SIFT_create().compute(image, kps)
+    calcula os descritores dos keypoints
+image: imagem onde os descritores serão calculados
+keypoints: lista de keypoints da imagem
+
+retorna uma tupla:
+    1 -> lista dos keypoints (pode ser reajustada, o sift, por exemplo, rotaciona para a orientação principal)
+    2 -> um array de descritores (N, 128). retorna N descritores, onde N eh o numero de keypoints, os descritores de sift sao de 128d
+
+## dictionary = MiniBatchKMeans(n_clusters=num_cluster, batch_size=batch_size, random_state=random_seed)
+    cria um objeto MiniBatchKMeans não treinado
+
+n_clusters=num_cluster:     Número de clusters/palavras visuais
+batch_size=batch_size:      Tamanho do mini-batch (ex: 1000)
+random_state=random_seed:   Semente para reprodutibilidade (ex: 42)
+
+dictionary.fit(vocabulary):    Agrupa os descritores em 'num_cluster' clusters
+
+centroides = dictionary.cluster_centers_:   # Matriz com forma (num_cluster, 128), centroides
