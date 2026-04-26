@@ -1,0 +1,14 @@
+# Dataset — baixar do Kaggle separadamente
+projeto-final/data/
+
+# Imagens geradas pelo EDA
+projeto-final/*.png
+
+# Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Python env
+.venv/
+env/
