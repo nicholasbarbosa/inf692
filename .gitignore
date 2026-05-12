@@ -1,8 +1,14 @@
 # macOS
 .DS_Store
 
+# Claude Code
+.claude/settings.local.json
+
 # Dataset — baixar do Kaggle separadamente
 projeto-final/data/
+
+# Datasets das atividades (MNIST, CIFAR, etc)
+atividade-curta-5/datasets/
 
 # Imagens geradas pelo EDA
 projeto-final/*.png
