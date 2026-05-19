@@ -8,7 +8,7 @@
 projeto-final/data/
 
 # Datasets das atividades (MNIST, CIFAR, etc)
-atividade-curta-5/datasets/
+atividade-curta-*/datasets/
 
 # Imagens geradas pelo EDA
 projeto-final/*.png
@@ -21,3 +21,9 @@ __pycache__/
 # Python env
 .venv/
 env/
+
+# Modelos treinados
+*.pkl
+
+# Logs do TensorBoard
+events.out.tfevents.*
